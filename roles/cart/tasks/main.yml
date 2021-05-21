@@ -13,6 +13,11 @@
    src: files/
    dest: /home/roboshop/{{COMPONENT}}
 
+- name: Installing NodeJS dependencies
+  npm:
+    path: /home/roboshop/{{COMPONENT}}
+    state: latest
+
 # - name: Download NodeJS dependencies
 #   shell: npm install
 #   args:
@@ -23,11 +28,6 @@
 #   shell: |
 #     cd /home/roboshop/{{COMPONENT}}
 #     npm install
-
-- name: Installing NodeJS dependencies
-  npm:
-    path: /home/roboshop/{{COMPONENT}}
-    state: latest
 
 #Update packages based on package.json to their latest version.
   
