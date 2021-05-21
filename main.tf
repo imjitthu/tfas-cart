@@ -15,7 +15,7 @@ resource "aws_instance" "cart" {
 
 connection {
   host = aws_instance.cart.public_ip
-  type = ssh
+  type = "ssh"
   user = var.USER
   #private_key = file("${local.key_path}")
   password = var.PASSWORD
