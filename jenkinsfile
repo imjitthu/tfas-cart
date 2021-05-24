@@ -11,7 +11,7 @@ pipeline {
         tfaction = "terraform ${params.tfaction}"
         invfile  = "cart_inv"
         playbook = "cart.yml"
-        build    = "master"
+        build    = "*master"
                 }
 
     stages ('Setup Roboshop Application') { 
