@@ -3,20 +3,19 @@ pipeline {
     agent any
     options { disableConcurrentBuilds() }
 
- parameters {
-   choice(name: 'tfaction', choices: ['init', 'plan', 'apply -auto-approve', 'destroy -auto-approve'], description: 'Pick any action')
- }
+    parameters {
+    choice(name: 'tfaction', choices: ['init', 'plan', 'apply -auto-approve', 'destroy -auto-approve'], description: 'Pick any action')
+    }
 
-environment {
-    tfaction = "terraform ${params.tfaction}"
-            }
+    environment {
+        tfaction = "terraform ${params.tfaction}"
+                }
 
     stages ('Setup Roboshop Application') { 
         stage ('Installing cart Server') { 
             steps { 
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awskey', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    sh 'terraform init'
-                    sh 'terraform plan'
+                    sh "${env.tfaction}"
                     } 
             if (params.tfaction == "destroy -auto-approve") {
                 ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'cart_inv', playbook: 'cart.yml'
