@@ -3,6 +3,14 @@ pipeline {
     agent any
     options { disableConcurrentBuilds() }
 
+ parameters {
+   choice(name: 'tfaction', choices: ['init', 'plan', 'apply -auto-approve', 'destroy -auto-approve'], description: 'Pick any action')
+ }
+
+environment {
+    tfaction = "terraform ${params.tfaction}"
+            }
+
     stages ('Setup Roboshop Application') { 
         stage ('Installing cart Server') { 
             steps { 
