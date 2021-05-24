@@ -15,7 +15,7 @@ pipeline {
 
     stages ('Setup Roboshop Application') { 
         when {
-            bild 'master'
+            bild 'dev'
         }
         stage ('Installing shipping Server') { 
             steps { 
