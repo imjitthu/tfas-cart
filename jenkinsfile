@@ -11,13 +11,13 @@ pipeline {
         tfaction = "terraform ${params.tfaction}"
         invfile  = "cart_inv"
         playbook = "cart.yml"
-        build    = "*master"
+        branch    = "**/master"
                 }
 
     stages ('Setup Roboshop Application') { 
         stage ('Installing shipping Server') { 
             when {
-            branch '${env.build}'
+            branch '${env.branch}'
                  }
             steps { 
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awskey', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
