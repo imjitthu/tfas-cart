@@ -18,7 +18,13 @@ environment {
                     sh 'terraform init'
                     sh 'terraform plan'
                     } 
-            ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'cart_inv', playbook: 'cart.yml'
+            if (params.tfaction == "destroy -auto-approve") {
+                ansiblePlaybook credentialsId: 'DevOps321', installation: 'ansibletool', inventory: 'cart_inv', playbook: 'cart.yml'
+            }
+            else {
+                echo "terraform action is: ${env.tfaction}"
+            }
+            
                 } 
             } 
         } 
