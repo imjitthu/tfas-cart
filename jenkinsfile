@@ -14,6 +14,9 @@ pipeline {
                 }
 
     stages ('Setup Roboshop Application') { 
+        when {
+            bild 'master'
+        }
         stage ('Installing shipping Server') { 
             steps { 
             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awskey', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
