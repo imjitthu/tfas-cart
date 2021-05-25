@@ -20,7 +20,7 @@ data "aws_ami" "ami" {
   most_recent = true
   owners      = ["973714476881"]
   # filters {
-  #   name = "image-d"
+  #   name = "image-id"
   #   values = ["ami-079a3f3cf00741286"]
   # } ami id will change all time so filtering on name
     filter {
