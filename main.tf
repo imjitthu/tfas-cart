@@ -38,14 +38,6 @@ provisioner "local-exec" {
 }
 }
 
-resource "aws_route53_record" "cart" {
-  zone_id = "${var.R53_ZONE_ID}"
-  name = "${var.COMPONENT}.${var.DOMAIN}"
-  type = "A"
-  ttl = "300"
-  records = [ aws_instance.cart.public_ip ]
-}
-
 resource "aws_route53_record" "jithendar" {
   name          = "${var.COMPONENT}.${data.aws_route53_zone.jithendar.name}"
   type          = "A"
