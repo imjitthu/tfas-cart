@@ -5,3 +5,5 @@ variable "INSTANCE_TYPE" {
 variable "DOMAIN" {default = ""}
 
 variable "COMPONENT" {}
+
+variable "env" {}
